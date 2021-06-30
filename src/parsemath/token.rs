@@ -11,6 +11,7 @@ pub enum Token {
     EOF,
 }
 
+#[derive(Debug, PartialEq, PartialOrd)]
 pub enum OperPrec {
     DefaultZero,
     AddSub,

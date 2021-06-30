@@ -90,6 +90,14 @@ mod tests {
     }
 
     #[test]
+    fn test_arith_expression() {
+        let mut tokenizer = Tokenizer::new("2+3");
+        assert_eq!(tokenizer.next().unwrap(), Token::Num(2.0));
+        assert_eq!(tokenizer.next().unwrap(), Token::Add);
+        assert_eq!(tokenizer.next().unwrap(), Token::Num(3.0));
+    }
+
+    #[test]
     fn test_eof() {
         let mut tokenizer = Tokenizer::new("");
         assert_eq!(tokenizer.next().unwrap(), Token::EOF)
