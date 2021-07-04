@@ -1,3 +1,5 @@
+use std::fmt;
+
 use super::ast::Node;
 use super::token::{OperPrec, Token};
 use super::tokenizer::Tokenizer;
@@ -130,6 +132,15 @@ impl<'a> Parser<'a> {
 pub enum ParseError {
     UnableToParse(String),
     InvalidOperator(String),
+}
+
+impl fmt::Display for ParseError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        match &self {
+            self::ParseError::UnableToParse(e) => write!(f, "Error in evaluating {}", e),
+            self::ParseError::InvalidOperator(e) => write!(f, "Error in evaluating {}", e),
+        }
+    }
 }
 
 #[cfg(test)]
